@@ -16,19 +16,23 @@ class Snake {
     this.head.x += cos(this.a) * speed;
     this.head.y += sin(this.a) * speed;
     
-    this.head.x += width;
-    this.head.x %= width;    
-    this.head.y += height;
-    this.head.y %= height;
+    this.head.x += w;
+    this.head.x %= w;    
+    this.head.y += h;
+    this.head.y %= h;
     
     fill(this.c);
     stroke(this.c);
     for (let i = this.body.length - 1; i > 0; i--) {
       this.body[i].update(this.body[i - 1]);
-      ellipse(this.body[i].x, this.body[i].y, size);
+      for (let j = -1; j < 2; j++) {
+        for (let k = -1; k < 2; k++) {
+          drawEllipse(this.body[i].x - x - w * j, this.body[i].y - y - w * k, this.c);
+        }
+      }     
     }
-    ellipse(this.head.x, this.head.y, size);
-
+    drawEllipse(this.head.x - x, this.head.y - y, this.c);
+     
     if (abs(this.head.x - this.target[0]) < 10 && abs(this.head.y - this.target[1]) < 10) {
       this.target = this.rTarget();
     }
@@ -36,6 +40,6 @@ class Snake {
     this.a += sin(frameCount) * 0.5;
   }
   rTarget() {
-    return [random(width), random(height)];
+    return [random(w), random(h)];
   }
 }
