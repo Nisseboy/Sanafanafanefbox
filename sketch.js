@@ -59,8 +59,8 @@ function draw() {
     x = (x + w) % w;
     y = (y + h) % h;
   } else {
-    x = grabbed.head.x;
-    y = grabbed.head.y;
+    x = grabbed.head.x % w;
+    y = grabbed.head.y % h;
   }
 }
 
