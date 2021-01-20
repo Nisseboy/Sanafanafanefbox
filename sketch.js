@@ -1,7 +1,7 @@
 let snakes = [];
 let count = 250;
 
-let speed = 5;
+let speed = 3;
 let size = 5;
 
 let w;
@@ -24,10 +24,10 @@ function setup() {
   document.body.style.overflow = 'hidden';
 
 
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      let k = i - size / 2;
-      let l = j - size / 2;
+  for (let i = 0; i < size * 2; i++) {
+    for (let j = 0; j < size * 2; j++) {
+      let k = i - size;
+      let l = j - size;
 
       let d = dis([k, l], [0, 0]);
 
