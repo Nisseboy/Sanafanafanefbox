@@ -10,6 +10,7 @@ class Snake {
     this.a = random(TWO_PI);
     this.c = [floor(random(255)), floor(random(255)), floor(random(255))];
     this.target = this.rTarget();
+    this.ignoreTarget = false;
   }
   draw() {
 
@@ -36,7 +37,8 @@ class Snake {
     if (abs(this.head.x - this.target[0]) < 10 && abs(this.head.y - this.target[1]) < 10) {
       this.target = this.rTarget();
     }
-    this.a += (atan2(this.target[1] - this.head.y, this.target[0] - this.head.x) - this.a) / 5;
+    if (!this.ignoreTarget)
+      this.a += (atan2(this.target[1] - this.head.y, this.target[0] - this.head.x) - this.a) / 5;
     this.a += sin(frameCount) * 0.5;
   }
   rTarget() {
