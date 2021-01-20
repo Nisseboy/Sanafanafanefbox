@@ -7,6 +7,9 @@ let size = 5;
 let w;
 let h;
 
+let grabDist = 20;
+let grabbed = null;
+
 let x = 0;
 let y = 0;
 let panSpeed = 12;
@@ -44,24 +47,38 @@ function draw() {
     snake.draw();
   });
   updatePixels();
-
-  if (keyIsDown(37))
-    x -= panSpeed;
-  if (keyIsDown(39))
-    x += panSpeed;
-  if (keyIsDown(40))
-    y += panSpeed;
-  if (keyIsDown(38))
-    y -= panSpeed;
-
-  x = (x + w) % w;
-  y = (y + h) % h;
+  if (grabbed  == null) {
+    if (keyIsDown(37))
+      x -= panSpeed;
+    if (keyIsDown(39))
+      x += panSpeed;
+    if (keyIsDown(40))
+      y += panSpeed;
+    if (keyIsDown(38))
+      y -= panSpeed;
+    x = (x + w) % w;
+    y = (y + h) % h;
+  } else {
+    x = grabbed.head.x;
+    y = grabbed.head.y;
+  }
 }
 
 function dis(p1, p2) {
   let i = p1[0] - p2[0];
   let j = p1[1] - p2[1];
   return sqrt(i * i + j * j);
+}
+
+function mousePressed() {
+  snakes.forEach(snake => {
+    let d = dis([mouseX + x, mouseY + y], [snake.head.x, snake.head.y]);    
+    if (d < grabDist) {
+      grabbed = snake;
+      return
+    }
+  });
+  grabbed = null;
 }
 
 function drawEllipse(X, Y, c) {
