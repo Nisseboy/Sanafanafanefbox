@@ -71,14 +71,16 @@ function dis(p1, p2) {
 }
 
 function mousePressed() {
+  let stop = false;
   snakes.forEach(snake => {
-    let d = dis([mouseX + x, mouseY + y], [snake.head.x, snake.head.y]);    
-    if (d < grabDist) {
+    let d = dis([(mouseX + x) % w, (mouseY + y) % h], [snake.head.x, snake.head.y]);
+    if (d < grabDist && !stop) { 
       grabbed = snake;
-      return
+      stop = true;
     }
   });
-  grabbed = null;
+  if (!stop)
+    grabbed = null;
 }
 
 function drawEllipse(X, Y, c) {
