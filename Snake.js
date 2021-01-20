@@ -27,7 +27,7 @@ class Snake {
       this.body[i].update(this.body[i - 1]);
       for (let j = -1; j < 2; j++) {
         for (let k = -1; k < 2; k++) {
-          drawEllipse(this.body[i].x - x - w * j, this.body[i].y - y - w * k, this.c);
+          drawEllipse(this.body[i].x - x - w * j, this.body[i].y - y - h * k, this.c);
         }
       }     
     }
