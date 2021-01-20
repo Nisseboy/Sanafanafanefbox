@@ -20,7 +20,7 @@ function setup() {
   w = width * 3;
   h = height * 3;
   for (let i = 0; i < count; i++)
-    snakes.push(new Snake(20, floor(random(w)), floor(random(h))));
+    snakes.push(new Snake(40, floor(random(w)), floor(random(h))));
   document.body.style.overflow = 'hidden';
 
 
