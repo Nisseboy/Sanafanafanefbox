@@ -37,7 +37,7 @@ class Snake {
       this.target = this.rTarget();
     }
     this.a += (atan2(this.target[1] - this.head.y, this.target[0] - this.head.x) - this.a) / 5;
-    this.a += sin(frameCount);
+    this.a += sin(frameCount) * 0.5;
   }
   rTarget() {
     return [random(w), random(h)];
