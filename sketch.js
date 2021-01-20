@@ -63,10 +63,9 @@ function draw() {
     x = grabbed.head.x - width / 2;
     y = grabbed.head.y - height / 2;
     
-    if (keyIsDown(37))
-      grabbed.a -= turnSpeed;
-    if (keyIsDown(39))
-      grabbed.a += turnSpeed;
+    if (keyIsDown(37)) {grabbed.a -= turnSpeed; grabbed.ignoreTarget = true; }    
+    if (keyIsDown(39)) {grabbed.a += turnSpeed; grabbed.ignoreTarget = true; }
+      
   }
 }
 
@@ -82,7 +81,6 @@ function mousePressed() {
     let d = dis([(mouseX + x) % w, (mouseY + y) % h], [snake.head.x, snake.head.y]);
     if (d < grabDist && !stop) { 
       grabbed = snake;
-      grabbed.ignoreTarget = true;
       stop = true;
     }
   });
