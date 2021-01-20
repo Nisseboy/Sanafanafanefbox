@@ -13,7 +13,7 @@ let grabbed = null;
 let x = 0;
 let y = 0;
 let panSpeed = 12;
-let turnSpeed = 5;
+let turnSpeed = 0.1;
 
 let ell = [];
 
