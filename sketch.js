@@ -7,7 +7,7 @@ let size = 5;
 let w;
 let h;
 
-let grabDist = 20;
+let grabDist = 30;
 let grabbed = null;
 
 let x = 0;
@@ -59,8 +59,8 @@ function draw() {
     x = (x + w) % w;
     y = (y + h) % h;
   } else {
-    x = grabbed.head.x - width;
-    y = grabbed.head.y - height;
+    x = grabbed.head.x - width / 2;
+    y = grabbed.head.y - height / 2;
   }
 }
 
