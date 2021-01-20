@@ -13,6 +13,7 @@ let grabbed = null;
 let x = 0;
 let y = 0;
 let panSpeed = 12;
+let turnSpeed = 5;
 
 let ell = [];
 
@@ -61,6 +62,11 @@ function draw() {
   } else {
     x = grabbed.head.x - width / 2;
     y = grabbed.head.y - height / 2;
+    
+    if (keyIsDown(37))
+      grabbed.a -= turnSpeed;
+    if (keyIsDown(39))
+      grabbed.a += turnSpeed;
   }
 }
 
@@ -76,11 +82,14 @@ function mousePressed() {
     let d = dis([(mouseX + x) % w, (mouseY + y) % h], [snake.head.x, snake.head.y]);
     if (d < grabDist && !stop) { 
       grabbed = snake;
+      grabbed.ignoreTarget = true;
       stop = true;
     }
   });
-  if (!stop)
+  if (!stop && grabbed != null) {
+    grabbed.ignoreTarget = false; 
     grabbed = null;
+  }
 }
 
 function drawEllipse(X, Y, c) {
