@@ -17,8 +17,8 @@ this.focus();
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  w = width * 3;
-  h = height * 3;
+  w = width;
+  h = height;
   for (let i = 0; i < count; i++)
     snakes.push(new Snake(40, floor(random(w)), floor(random(h))));
   document.body.style.overflow = 'hidden';
